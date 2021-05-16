@@ -28,7 +28,7 @@
 ![](./img/startView.JPG)
 
 **명언, 바이블, 영단어, 사자성어 소개 화면**
-![](./img/commentView.JPG)
+![](./img/commentView .JPG)
 
 **기록함 화면**
 ![](./img/recordView.JPG)
