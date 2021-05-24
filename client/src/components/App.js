@@ -8,6 +8,7 @@ import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer"
 import CommentPage from "./views/CommentPage/CommentPage"
+import AddCommnetPage from "./views/AddCommentPage/AddCommentPage"
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/comment" component={Auth(CommentPage, null)} />
+          <Route exact path="/addComment" component={Auth(AddCommnetPage, true)} />
         </Switch>
       </div>
       <Footer />
