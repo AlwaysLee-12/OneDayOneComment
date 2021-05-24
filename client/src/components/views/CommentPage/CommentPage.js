@@ -4,7 +4,7 @@ import React,{useState,useEffect} from 'react'
 const {Title}= Typography
 
 function CommentPage() {
-    const [comment, setcomment] = useState()
+    const [comment, setComment] = useState()
     
     useEffect(() => {
         
