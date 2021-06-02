@@ -33,23 +33,15 @@ function AddCommentPage(props) {
         setRecordDate(e.currentTarget.value)
     }
     
-
     const onSubmit=(e)=>{
         e.preventDefault(); //원래 하려고 했던 것들 방지함으로써 현재 하려는 것 수행
         const variables={
-    
+            category:Category,
+            title:CommentTitle,
+            description:Description,
+            registerDate:RecordDate
         }
-        axios.post('api/video/uploadVideo',variables)
-            .then(response=>{
-                if(response.data.success){
-                    message.success('업로드 완료')
-                    setTimeout(()=>{
-                        props.history.push('/')
-                    },3000)
-                }else{
-                    alert('비디오 업로드 실패')
-                }
-            })
+        axios.post('api/video/uploadComment',variables)
     }
 
     return (
