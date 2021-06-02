@@ -44,7 +44,7 @@ function AddCommentPage(props) {
         axios.post('api/comment/uploadComment',variables)
             .then(response=>{
                 if(response.data.success){
-                    message('Success To Upload Your Comment')
+                    message.success('Success To Upload Your Comment')
                     setTimeout(function(){
                         props.history.push('/')
                     },3000)
