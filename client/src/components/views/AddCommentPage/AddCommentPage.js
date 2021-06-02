@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {Typography,Button,Form,message,Input,Icon} from 'antd'
+import {Typography,Button,Form,message,Input} from 'antd'
 import axios from 'axios'
 
 const {TextArea}=Input
@@ -49,7 +49,11 @@ function AddCommentPage(props) {
                         props.history.push('/')
                     },3000)
                 }else{
-                    alert('Fail To Upload Your Comment')
+                    if(response.data.message){
+                        alert(response.data.message)
+                    }else{
+                        alert('Fail To Upload Your Comment')
+                    }
                 }
             }) 
     }
@@ -79,6 +83,7 @@ function AddCommentPage(props) {
                 <Input
                     onChange={onCommentTitleChange}
                     value={CommentTitle}
+                    required
                 />
                 <br/>
                 <br/>
@@ -86,6 +91,7 @@ function AddCommentPage(props) {
                 <TextArea
                     onChange={onDescriptionChange}
                     value={Description}
+                    required
                 />
                 <br/>
                 <br/>
