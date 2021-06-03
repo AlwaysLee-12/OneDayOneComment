@@ -35,6 +35,7 @@ function AddCommentPage(props) {
     
     const onSubmit=(e)=>{
         e.preventDefault(); //원래 하려고 했던 것들 방지함으로써 현재 하려는 것 수행
+        
         const variables={
             category:Category,
             title:CommentTitle,

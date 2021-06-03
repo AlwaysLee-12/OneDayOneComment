@@ -23,7 +23,7 @@ function App() {
           <Route exact path="/" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
-          <Route exact path="/comment" component={Auth(CommentPage, null)} />
+          <Route exact path="/comment/:id" component={Auth(CommentPage, null)} />
           <Route exact path="/addComment" component={Auth(AddCommnetPage, true)} />
         </Switch>
       </div>

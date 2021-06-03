@@ -9,6 +9,18 @@ const { auth } = require("../middleware/auth");
 //=================================
 
 router.post("/uploadComment", auth,(req, res) => {
+    if(req.body.category==="명언"){
+        req.body.category=0
+    }
+    else if(req.body.category==="바이블"){
+        req.body.category=1
+    }
+    else if(req.body.category==="영문장"){
+        req.body.category=2
+    }
+    else{
+        req.body.category=3
+    }
 
     Comment.findOne({title:req.body.title})
         .exec((err,user)=>{
@@ -20,6 +32,38 @@ router.post("/uploadComment", auth,(req, res) => {
                 return res.status(200).json({success:true})
             })
         })
+});
+
+router.post("/getComment", auth,(req, res) => {
+    
+    if(req.body.commentId==0){
+        Comment.findOne({category:req.body.commentId})
+            .exec((err,comment)=>{
+                if(err) return res.status(400).json({success:false, err})
+                return res.status(200).json({success: true, comment})
+            })
+    }
+    else if(req.body.commentId==1){
+        Comment.findOne({category:req.body.commentId})
+            .exec((err,comment)=>{
+                if(err) return res.status(400).json({success:false, err})
+                return res.status(200).json({success: true, comment})
+            })
+    }
+    else if(req.body.commentId==2){
+        Comment.findOne({category:req.body.commentId})
+            .exec((err,comment)=>{
+                if(err) return res.status(400).json({success:false, err})
+                return res.status(200).json({success: true, comment})
+            })
+    }
+    else{
+        Comment.findOne({category:req.body.commentId})
+            .exec((err,comment)=>{
+                if(err) return res.status(400).json({success:false, err})
+                return res.status(200).json({success: true, comment})
+            })
+    }
 });
 
 module.exports = router;
