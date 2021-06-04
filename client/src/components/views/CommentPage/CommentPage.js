@@ -1,12 +1,12 @@
-import {Typography,Row,Col,Button} from 'antd'
+import {Typography,Row,Col,Button, message} from 'antd'
 import Axios from 'axios'
 import React,{useState,useEffect} from 'react'
-
+import {useSelector} from 'react-redux'
 const {Title}= Typography
 
 function CommentPage(props) {
     const commentId= props.match.params.id
-
+    const user=useSelector(state=>state.user)
     const [CommentTitle, setCommentTitle] = useState("")
     const [Description, setDescription]= useState("")
 
@@ -24,6 +24,24 @@ function CommentPage(props) {
             })
     }, [])
 
+    const onSubmit=()=>{
+        const variables={
+            userInfo:user.userData._id,
+            category:commentId,
+            title:CommentTitle,
+            description:Description
+        }
+
+        Axios.post("/api/comment/saveComment",variables)
+            .then(response=>{
+                if(response.data.success){
+                    message.success("Success to save the Comment")
+                }else{
+                    alert("Fail to save Comment!")
+                }
+            })
+    }
+
     return (
         <div style={{margin:'8rem',display:'flex', alignItems:'center',justifyContent:'center', flexDirection:'column'}}>
             <div>
@@ -33,7 +51,7 @@ function CommentPage(props) {
                 <p>{Description}</p>
             </div>
             <div style={{marginTop:'1rem'}}>
-                <Button style={{backgroundColor:'grey', color:'white', width:'5rem', height:'2.5rem'}} onClick>저장</Button>
+                <Button style={{backgroundColor:'grey', color:'white', width:'5rem', height:'2.5rem'}} onClick={onSubmit}>저장</Button>
             </div>
         </div>
     )    
