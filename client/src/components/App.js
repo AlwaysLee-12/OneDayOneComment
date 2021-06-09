@@ -9,6 +9,7 @@ import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer"
 import CommentPage from "./views/CommentPage/CommentPage"
 import AddCommnetPage from "./views/AddCommentPage/AddCommentPage"
+import MyRecordedPage from './views/MyRecordedPage/MyRecordedPage';
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/comment/:id" component={Auth(CommentPage, null)} />
           <Route exact path="/addComment" component={Auth(AddCommnetPage, true)} />
+          <Route exact path="/myRecorded" component={Auth(MyRecordedPage, true)} />
         </Switch>
       </div>
       <Footer />
