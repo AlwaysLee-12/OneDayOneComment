@@ -1,9 +1,24 @@
-import React from 'react'
-import ReactPaginate from "react-paginate";
+import React,{useState,useEffect} from 'react'
+import Paginator from 'react-hooks-paginator';
 
 function MyRecordedPage() {
+    const pageLimit = 10;
+ 
+    const [offset, setOffset] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [data, setData] = useState([]);
+    const [currentData, setCurrentData] = useState([]);
+
+    useEffect(() => {
+        
+      }, []);
+     
+      useEffect(() => {
+        setCurrentData(data.slice(offset, offset + pageLimit));
+      }, [offset, data]);
+
     return (
-        <div style={{margin:'13rem auto', display:'flex', alignItems:'center', flexDirection:'column',justifyContent:'space Between'}}>
+        <div style={{margin:'13rem auto', display:'flex', alignItems:'center', flexDirection:'column'}}>
             <table border="2">
                 <th>Comment</th><th>Description</th><th>Record Date</th>
                 <tr>
@@ -12,19 +27,19 @@ function MyRecordedPage() {
                     <td>등록일 자리</td>
                 </tr>
             </table>
-            <ReactPaginate 
-                pageCount={1}
-                pageRangeDisplayed={10}
-                marginPagesDisplayed={0}
-                breakLabel={""}
-                previousLabel={"이전"}
-                nextLabel={"다음"}
-                onPageChange
-                containerClassName={"pagination-ul"}
-                activeClassName={"currentPage"}
-                previousClassName={"pageLabel-btn"}
-                nextClassName={"pageLabel-btn"}
-            />  
+            <ul>
+                {currentData.map(data => (
+                <li>{data}</li>
+                ))}
+            </ul>
+            <Paginator
+                totalRecords={10}
+                pageLimit={4}
+                pageNeighbours={1}
+                setOffset={setOffset}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+            />
         </div>
     )
 }
