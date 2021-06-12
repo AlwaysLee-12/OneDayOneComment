@@ -42,7 +42,7 @@ function AddCommentPage(props) {
             description:Description,
             registerDate:RecordDate
         }
-        axios.post('api/comment/uploadComment',variables)
+        axios.post('/api/comment/uploadComment',variables)
             .then(response=>{
                 if(response.data.success){
                     message.success('Success To Upload Your Comment')
