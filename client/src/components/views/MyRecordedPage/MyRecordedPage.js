@@ -1,10 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import Paginator from 'react-hooks-paginator';
 import Axios from 'axios'
-import {useSelector} from 'react-redux'
 
-function MyRecordedPage(props) {
-    const user=useSelector(state=>state.user)
+function MyRecordedPage() {
     const pageLimit = 10;
     
     const [offset, setOffset] = useState(0);
@@ -13,8 +11,8 @@ function MyRecordedPage(props) {
     const [currentData, setCurrentData] = useState([]);
 
     useEffect(() => {
-        console.log(user.userData)
-        Axios.get('/api/recorded/getRecorded',)
+        const variables={userInfo:localStorage.getItem('userId')}
+        Axios.post('/api/recorded/getRecorded',variables)
             .then(response=>{
                 if(response.data.success){
                     console.log(response.data.comments)

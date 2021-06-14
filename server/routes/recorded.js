@@ -8,8 +8,9 @@ const { auth } = require("../middleware/auth");
 //             Recorded
 //=================================
 
-router.get("/getRecorded", auth,(req, res) => {
-    Recorded.find({userInfo:req.body.userInfo})
+router.post("/getRecorded", auth,(req, res) => {
+    console.log(req.body)
+    Recorded.find({"userInfo":req.body.userInfo})
         .exec((err,results)=>{
             if(err) return res.status(400).json({success:false, err})
             return res.status(200).json({success:true, comments:results})
