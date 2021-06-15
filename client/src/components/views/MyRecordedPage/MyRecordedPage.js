@@ -9,13 +9,14 @@ function MyRecordedPage() {
     const [currentPage, setCurrentPage] = useState(1);
     const [data, setData] = useState([]);
     const [currentData, setCurrentData] = useState([]);
+    const [Comments, setComments] = useState([])
 
     useEffect(() => {
         const variables={userInfo:localStorage.getItem('userId')}
         Axios.post('/api/recorded/getRecorded',variables)
             .then(response=>{
                 if(response.data.success){
-                    console.log(response.data.comments)
+                    setComments(response.data.comments)
                 }else{
                     alert('Fail To Get Recorded')
                 }
