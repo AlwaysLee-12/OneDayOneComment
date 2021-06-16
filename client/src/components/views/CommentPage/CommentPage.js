@@ -25,11 +25,14 @@ function CommentPage(props) {
     }, [])
 
     const onSubmit=()=>{
+        const date=new Date()
+        const today=date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate()
         const variables={
             userInfo:user.userData._id,
             category:commentId,
             title:CommentTitle,
-            description:Description
+            description:Description,
+            registerDate: today
         }
 
         Axios.post("/api/comment/saveComment",variables)

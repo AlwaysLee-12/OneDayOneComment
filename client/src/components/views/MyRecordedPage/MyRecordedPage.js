@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Paginator from 'react-hooks-paginator';
 import Axios from 'axios'
+import {Avatar,Col,Meta ,Typography, Row} from 'antd'
 
 function MyRecordedPage() {
     const pageLimit = 10;
@@ -17,6 +18,7 @@ function MyRecordedPage() {
             .then(response=>{
                 if(response.data.success){
                     setComments(response.data.comments)
+
                 }else{
                     alert('Fail To Get Recorded')
                 }
@@ -27,16 +29,21 @@ function MyRecordedPage() {
         setCurrentData(data.slice(offset, offset + pageLimit));
     }, [offset, data]);
 
+    const renderComments=Comments.map((comment,index)=>{
+        return  <tr>
+                    <td>{comment.title}</td>
+                    <td>{comment.description}</td>
+                    <td>{comment.registerDate}</td>
+                </tr>
+    })
+
     return (
         <div style={{margin:'13rem auto', display:'flex', alignItems:'center', flexDirection:'column'}}>
             <table border="2">
                 <th>Comment</th><th>Description</th><th>Record Date</th>
-                <tr>
-                    <td>코멘트 자리</td>
-                    <td>설명 자리</td>
-                    <td>등록일 자리</td>
-                </tr>
+                {renderComments}
             </table>
+            
             <ul>
                 {currentData.map(data => (
                 <li>{data}</li>
