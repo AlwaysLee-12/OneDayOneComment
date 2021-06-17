@@ -35,34 +35,74 @@ router.post("/uploadComment", auth,(req, res) => {
 });
 
 router.post("/getComment", auth,(req, res) => {
-    
+
     if(req.body.commentId==0){
-        Comment.findOne({category:req.body.commentId})
-            .exec((err,comment)=>{
+        let i=0
+        Comment.find({category:req.body.commentId})
+            .exec((err,comments)=>{              
                 if(err) return res.status(400).json({success:false, err})
-                return res.status(200).json({success: true, comment})
-            })
+                for(;i<comments.length;i++){
+                    Recorded.exists({title:comments[i].title},function(err,result){   
+                        if(i<comments.length&&!result){  
+                            return res.status(200).json({success: true, comment:comments[i]})
+                        }         
+                    })
+                }
+                if(i>=comments.length){
+                    return res.status(200).json({success:true, message:"You Studied All Comments"})  
+                }               
+        })
     }
     else if(req.body.commentId==1){
-        Comment.findOne({category:req.body.commentId})
-            .exec((err,comment)=>{
+        let i=0
+        Comment.find({category:req.body.commentId})
+            .exec((err,comments)=>{              
                 if(err) return res.status(400).json({success:false, err})
-                return res.status(200).json({success: true, comment})
-            })
+                for(;i<comments.length;i++){
+                    Recorded.exists({title:comments[i].title},function(err,result){   
+                        if(i<comments.length&&!result){  
+                            return res.status(200).json({success: true, comment:comments[i]})
+                        }         
+                    })
+                }
+                if(i>=comments.length){
+                    return res.status(200).json({success:true, message:"You Studied All Comments"})  
+                }               
+        })
     }
     else if(req.body.commentId==2){
-        Comment.findOne({category:req.body.commentId})
-            .exec((err,comment)=>{
+        let i=0
+        Comment.find({category:req.body.commentId})
+            .exec((err,comments)=>{              
                 if(err) return res.status(400).json({success:false, err})
-                return res.status(200).json({success: true, comment})
-            })
+                for(;i<comments.length;i++){
+                    Recorded.exists({title:comments[i].title},function(err,result){   
+                        if(i<comments.length&&!result){  
+                            return res.status(200).json({success: true, comment:comments[i]})
+                        }         
+                    })
+                }
+                if(i>=comments.length){
+                    return res.status(200).json({success:true, message:"You Studied All Comments"})  
+                }               
+        })
     }
     else{
-        Comment.findOne({category:req.body.commentId})
-            .exec((err,comment)=>{
+        let i=0
+        Comment.find({category:req.body.commentId})
+            .exec((err,comments)=>{              
                 if(err) return res.status(400).json({success:false, err})
-                return res.status(200).json({success: true, comment})
-            })
+                for(;i<comments.length;i++){
+                    Recorded.exists({title:comments[i].title},function(err,result){   
+                        if(i<comments.length&&!result){  
+                            return res.status(200).json({success: true, comment:comments[i]})
+                        }         
+                    })
+                }
+                if(i>=comments.length){
+                    return res.status(200).json({success:true, message:"You Studied All Comments"})  
+                }               
+        })
     }
 });
 
