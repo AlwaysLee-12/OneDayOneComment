@@ -15,16 +15,13 @@ function CommentPage(props) {
     useEffect(() => {
         Axios.post("/api/comment/getComment",variable)
             .then(response=>{
-                if(response.data.success){   
-                    if(response.data.message){
-                        message.warning(response.data.message)
-                        props.history.push('/')
-                    }else{
-                        setCommentTitle(response.data.comment.title)
-                        setDescription(response.data.comment.description)
-                    }     
+                console.log(response.data)
+                if(response.data.success){
+                    setCommentTitle(response.data.comment.title)
+                    setDescription(response.data.comment.description)     
                 }else{
                     alert('Fail To Get Comment')
+                    props.history.push('/')
                 }
             })
     }, [])
