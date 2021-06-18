@@ -38,17 +38,16 @@ router.post("/getComment", auth,(req, res) => {
             }
 
             const commentResult= async function(){
-                    for(let i=0;i<comments.length;i++){                        
-                        let result= await isDuplicated(i) 
-                        if(!result){
-                            Comment=comments[i] 
-                            flag=true
-                        }        
-                    }
-                    if(!flag) Comment="Complete!"
-                return new Promise(function(resolve, reject){
-                    resolve(Comment)    
-                })
+                for(let i=0;i<comments.length;i++){                       
+                    let result= await isDuplicated(i) 
+                    console.log(result)
+                    if(!result){
+                        Comment=comments[i] 
+                        flag=true
+                    }        
+                }
+                if(!flag) Comment="Complete!"
+                return Comment
             }
 
             async function getComment(){
