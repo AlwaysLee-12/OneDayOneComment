@@ -15,10 +15,14 @@ function CommentPage(props) {
     useEffect(() => {
         Axios.post("/api/comment/getComment",variable)
             .then(response=>{
-                console.log(response.data)
                 if(response.data.success){
-                    setCommentTitle(response.data.comment.title)
-                    setDescription(response.data.comment.description)     
+                    if(response.data.comment=="Complete!"){
+                        message.warning("You Studied All Comments")
+                        props.history.push('/')
+                    }else{
+                        setCommentTitle(response.data.comment.title)
+                        setDescription(response.data.comment.description)     
+                    }
                 }else{
                     alert('Fail To Get Comment')
                     props.history.push('/')

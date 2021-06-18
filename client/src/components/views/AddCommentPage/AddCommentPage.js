@@ -15,7 +15,7 @@ const today=new Date()
 function AddCommentPage(props) {
     const recordDate=today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate() 
 
-    const [Category, setCategory] = useState("명언")
+    const [Category, setCategory] = useState(0)
     const [CommentTitle, setCommentTitle] = useState("")
     const [Description, setDescription] = useState("")
     const [RecordDate, setRecordDate] = useState(recordDate)
