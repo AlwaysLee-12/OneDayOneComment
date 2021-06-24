@@ -15,6 +15,7 @@ function CommentPage(props) {
     useEffect(() => {
         Axios.post("/api/comment/getComment",variable)
             .then(response=>{
+                console.log(response)
                 if(response.data.success){
                     if(response.data.comment=="Complete!"){
                         message.warning("You Studied All Comments")
